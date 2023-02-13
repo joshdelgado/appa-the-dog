@@ -1,0 +1,56 @@
+$background-size: 860px;
+
+* {
+	box-sizing: border-box;
+}
+
+.App {
+	text-align: center;
+	height: 100vh;
+	background-size: $background-size;
+
+	@media (prefers-reduced-motion: no-preference) {
+		animation: background-scroll infinite 180s linear;
+	}
+}
+
+.App-inner {
+	height: 100%;
+	border: 1rem solid transparent;
+	background-color: rgba(0, 0, 0, 0.5);
+}
+
+.App-logo {
+	height: 40vmin;
+	pointer-events: none;
+}
+
+.App-header {
+	background-color: #282c34;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	height: 100%;
+	font-size: calc(10px + 2vmin);
+	color: white;
+	border-radius: 20px;
+}
+
+.appa {
+	font-size: 4rem;
+
+	span {
+		color: #61dafb;
+	}
+}
+
+@keyframes background-scroll {
+	from {
+		background-position: 0% 0%;
+	}
+
+	to {
+		background-position: $background-size 0%;
+	}
+}
