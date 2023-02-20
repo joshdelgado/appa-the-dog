@@ -16,7 +16,7 @@ export default function Age() {
 	let age = getReadableAge(ageInMs);
 
 	return (
-		<h2 className="appa"><span>Appa</span> is {age} old </h2>
+		<h2 className="appa"><span>Appa</span> is {age} old!</h2>
 	);
 }
 
