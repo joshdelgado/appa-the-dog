@@ -2,11 +2,11 @@
 const msInDay: number = 86400000,
 	daysInWeek: number = 7,
 	daysInMonth: number = 30,
-	daysInYear: number = 365,
-	monthsInYear: number = 12,
-	weeksInYear: number = 52,
-	weeksInMonth: number = 4,
-	displayOptions: string[] = ['day', 'week', 'month', 'yeah', 'detailed', 'second', 'minute', 'hour'];
+	daysInYear: number = 365;
+// monthsInYear: number = 12,
+// weeksInYear: number = 52,
+// weeksInMonth: number = 4,
+// displayOptions: string[] = ['day', 'week', 'month', 'yeah', 'detailed', 'second', 'minute', 'hour'];
 
 export default function Age() {
 	const today: Date = new Date(),
@@ -22,8 +22,8 @@ export default function Age() {
 
 function getReadableAge(ageInMs: number): string {
 	const ageInDays: number = Math.floor(ageInMs / msInDay),
-		ageInWeeks: number = Math.floor(ageInDays / daysInWeek),
-		ageInMonths: number = Math.floor(ageInDays / daysInMonth),
+		// ageInWeeks: number = Math.floor(ageInDays / daysInWeek),
+		// ageInMonths: number = Math.floor(ageInDays / daysInMonth),
 		ageInYears: number = Math.floor(ageInDays / daysInYear);
 
 	let ageObj: { [index: string]: number } = {

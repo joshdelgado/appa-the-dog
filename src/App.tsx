@@ -1,6 +1,6 @@
 import React from 'react';
 import appa from './assets/img/appa-1.webp';
-import appaSmall from './assets/img/appa-1--small.webp';
+// import appaSmall from './assets/img/appa-1--small.webp';
 import background from './assets/img/90s-bg.webp';
 import './assets/App.scss';
 import Age from './components/age';
