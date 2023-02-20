@@ -42,11 +42,13 @@
 		justify-content: center;
 		height: 100%;
 		padding: 2rem;
-		font-size: calc(10px + 2vmin);
+		gap: clamp(1.5rem, 3vw, 3rem);
 		color: var(--text);
 		border-radius: var(--border-radius);
 		border: 6px solid var(--primary);
 		box-shadow: 0px 4px 10px 2px #0c2d4880;
+		max-width: 1920px;
+		margin: 0 auto;
 	}
 }
 
@@ -64,7 +66,8 @@
 }
 
 .appa {
-	font-size: 4rem;
+	font-size: clamp(2rem, 10vw, 4rem);
+	margin: 0;
 
 	span {
 		color: var(--accent);
