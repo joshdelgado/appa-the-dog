@@ -28,7 +28,7 @@ export default function App() {
 		<div className="app" style={{ backgroundImage: `url(${background})` }}>
 			<div className="app__inner">
 				<main className={`app__content ${isPartyTime ? 'app__content--party-time' : ''}`}>
-					<select onChange={handleSelect}>
+					<select className="app__select" onChange={handleSelect}>
 						{ageOptions.map((option) => (
 							<option value={option.value}>{option.label}</option>
 						))}
@@ -44,15 +44,16 @@ export default function App() {
 
 function setAgeOptions(): SelectOption[] {
 	let ageOptions: SelectOption[] = [
-		new SelectOption('Full', DisplayOptions.FULL),
-		new SelectOption('Days', DisplayOptions.DAY),
-		new SelectOption('Weeks', DisplayOptions.WEEK),
-		new SelectOption('Months', DisplayOptions.MONTH)
+		new SelectOption('Full', DisplayOptions.FULL)
 	];
 
 	if (new Date().getTime() - new Date(APPA_BIRTHDAY).getTime() >= MS_IN_DAY * DAYS_IN_YEAR) {
 		ageOptions.push(new SelectOption('Years', DisplayOptions.YEAR));
 	}
+
+	ageOptions.push(new SelectOption('Months', DisplayOptions.MONTH));
+	ageOptions.push(new SelectOption('Weeks', DisplayOptions.WEEK));
+	ageOptions.push(new SelectOption('Days', DisplayOptions.DAY));
 
 	return ageOptions;
 }

@@ -93,6 +93,28 @@
 			right: calc(50% - 2rem);
 		}
 	}
+
+	&__select {
+		appearance: none;
+		width: 12rem;
+		border-radius: 4px;
+		font-size: 1.25rem;
+		padding: 0.5em 3.5em 0.5em 0.75em;
+		cursor: pointer;
+		background-image:
+			linear-gradient(45deg, transparent 50%, gray 50%),
+			linear-gradient(135deg, gray 50%, transparent 50%),
+			linear-gradient(to right, #ccc, #ccc);
+		background-position:
+			calc(100% - 20px) calc(1em),
+			calc(100% - 15px) calc(1em),
+			calc(100% - 2em) 0.35em;
+		background-size:
+			5px 5px,
+			5px 5px,
+			1px 1.5em;
+		background-repeat: no-repeat;
+	}
 }
 
 .appa-picture {
