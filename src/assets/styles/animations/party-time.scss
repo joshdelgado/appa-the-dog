@@ -1,0 +1,19 @@
+@keyframes party-time {
+	from {
+		filter: hue-rotate(0deg);
+	}
+
+	to {
+		filter: hue-rotate(360deg);
+	}
+}
+
+@keyframes party-time-icon {
+	from {
+		filter: saturate(500%) contrast(800%) brightness(500%) invert(80%) sepia(50%) hue-rotate(0deg)
+	}
+
+	to {
+		filter: saturate(500%) contrast(800%) brightness(500%) invert(80%) sepia(50%) hue-rotate(360deg)
+	}
+}

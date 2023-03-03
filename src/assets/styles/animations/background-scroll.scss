@@ -1,0 +1,9 @@
+@keyframes background-scroll {
+	from {
+		background-position: 0% 0%;
+	}
+
+	to {
+		background-position: var(--background-size) 0%;
+	}
+}

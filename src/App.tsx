@@ -1,4 +1,4 @@
-import './assets/App.scss';
+import './assets/styles/app.scss';
 import { ChangeEvent, useState } from 'react';
 import appa from './assets/img/appa-1.webp';
 import discoBall from './assets/img/disco-ball.png';

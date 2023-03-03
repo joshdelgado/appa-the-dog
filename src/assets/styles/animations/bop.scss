@@ -1,0 +1,20 @@
+$move: 0.5vmin;
+$rotate: 1deg;
+
+@keyframes bop {
+	0% {
+		transform: translateY(0) rotate(0);
+	}
+
+	25% {
+		transform: translateY($move*-1) rotate(1deg);
+	}
+
+	50% {
+		transform: translateY(0) rotate(0);
+	}
+
+	75% {
+		transform: translateY($move*-1) rotate(-1deg);
+	}
+}
