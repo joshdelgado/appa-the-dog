@@ -1,66 +1,83 @@
+import { APPA_BIRTHDAY, APPA_GOTCHADAY, MS_IN_DAY } from '../consts/consts';
+import { DisplayOptions } from '../enums/display-options';
+import { AgeObject } from '../interfaces/age-interface';
 
-const msInDay: number = 86400000,
-	appaBirthday: string = '10/22/2022';
-// appaGotchaday: string = '1/27/2023',
-// displayOptions: string[] = ['day', 'week', 'month', 'yeah', 'detailed', 'second', 'minute', 'hour'];
-
-export default function Age() {
+export default function Age(props: { selectedOption: DisplayOptions | undefined }) {
 	const today: Date = new Date(),
-		birthday: Date = new Date(appaBirthday),
-		age = getAgeInNaturalLanguage(today, birthday);
+		birthday: Date = new Date(APPA_BIRTHDAY),
+		gotchaday: Date = new Date(APPA_GOTCHADAY),
+		age = getAgeInNaturalLanguage(today, birthday, props.selectedOption);
 
 	return (
 		<h2 className="appa"><span>Appa</span> is {age}&nbsp;old!</h2>
 	);
 }
 
-function getAgeInNaturalLanguage(today: Date, birthday: Date): string {
-	const ageObj = getAgeObject(today, birthday),
-		lastKey = Object.keys(ageObj).pop();
-	let ageInNaturalLanguage = '';
+function getAgeInNaturalLanguage(today: Date, birthday: Date, display: DisplayOptions = DisplayOptions.FULL): string {
+	const ageObjects: AgeObject[] = getAgeObjects(today, birthday);
+	return display === DisplayOptions.FULL ? getAgeInDetail(ageObjects[0]) : getAgeInSpecificUnit(ageObjects[1], display);
+}
+
+function getAgeInDetail(ageObj: AgeObject): string {
+	const lastKey = Object.keys(ageObj).pop();
+	let ageString: string = '';
 
 	for (const k in ageObj) {
 		const v = ageObj[k];
 
 		if (k === lastKey) {
-			ageInNaturalLanguage += 'and ';
+			ageString += 'and ';
 		}
 
 		if (v > 0) {
-			ageInNaturalLanguage += `${v} ${k}`;
+			ageString += `${v} ${k}`;
 			if (v > 1) {
-				ageInNaturalLanguage += 's';
+				ageString += 's';
 			}
 			if (k !== lastKey) {
-				ageInNaturalLanguage += ' ';
+				ageString += ' ';
 			}
 		}
 	}
-
-	return ageInNaturalLanguage;
+	return ageString;
 }
 
-function getAgeObject(today: Date, birthday: Date): { [index: string]: number } {
-	const timeBetween = today.getTime() - birthday.getTime()
-	let totalDays = Math.floor(timeBetween / msInDay),
-		// totalWeeks = Math.floor(totalDays / 7),
+function getAgeInSpecificUnit(age: AgeObject, unit: DisplayOptions): string {
+	let ageString = `${age[unit].toString()} ${unit}`;
+	if (age[unit] > 1) {
+		ageString += 's';
+	}
+	return ageString;
+}
+
+function getAgeObjects(today: Date, birthday: Date): AgeObject[] {
+	const timeBetween = today.getTime() - birthday.getTime();
+	let totalDays = Math.floor(timeBetween / MS_IN_DAY),
+		totalWeeks = Math.floor(totalDays / 7),
 		totalMonths = Math.floor(totalDays / 30),
 		years = Math.floor(totalDays / 365),
-		remainingDays = totalDays %= 30,
+		remainingDays = totalDays % 30,
 		remainingWeeks = 0,
-		remainingMonths = totalMonths %= 12;
+		remainingMonths = totalMonths % 12;
 
 	if (remainingDays >= 7) {
 		remainingWeeks = Math.floor(remainingDays / 7);
 		remainingDays = remainingDays % 7;
 	}
 
-	const ageObj: { [index: string]: number } = {
+	const ageObj: AgeObject = {
 		year: years,
 		month: remainingMonths,
 		week: remainingWeeks,
 		day: remainingDays
 	};
 
-	return ageObj;
+	const detailedAgeObj: AgeObject = {
+		year: years,
+		month: totalMonths,
+		week: totalWeeks,
+		day: totalDays
+	};
+
+	return [ageObj, detailedAgeObj];
 }
