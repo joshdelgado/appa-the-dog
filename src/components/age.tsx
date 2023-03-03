@@ -10,7 +10,7 @@ export default function Age() {
 		age = getAgeInNaturalLanguage(today, birthday);
 
 	return (
-		<h2 className="appa"><span>Appa</span> is {age} old!</h2>
+		<h2 className="appa"><span>Appa</span> is {age}&nbsp;old!</h2>
 	);
 }
 
@@ -23,7 +23,7 @@ function getAgeInNaturalLanguage(today: Date, birthday: Date): string {
 		const v = ageObj[k];
 
 		if (k === lastKey) {
-			ageInNaturalLanguage += 'and '
+			ageInNaturalLanguage += 'and ';
 		}
 
 		if (v > 0) {
@@ -31,7 +31,9 @@ function getAgeInNaturalLanguage(today: Date, birthday: Date): string {
 			if (v > 1) {
 				ageInNaturalLanguage += 's';
 			}
-			ageInNaturalLanguage += ' ';
+			if (k !== lastKey) {
+				ageInNaturalLanguage += ' ';
+			}
 		}
 	}
 

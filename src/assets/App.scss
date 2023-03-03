@@ -36,6 +36,7 @@
 
 	&__content {
 		background-color: var(--background);
+		position: relative;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
@@ -49,6 +50,48 @@
 		box-shadow: 0px 4px 10px 2px #0c2d4880;
 		max-width: 1920px;
 		margin: 0 auto;
+
+		&--party-time {
+			@media (prefers-reduced-motion: no-preference) {
+				animation: party-time infinite 2000ms linear,
+					on-beat alternate infinite 225ms ease-in;
+			}
+
+			.app__party-time {
+				filter: invert(100%);
+				animation: bop infinite 900ms ease-in;
+
+				&:hover {
+					animation: party-time-icon infinite 2000ms linear,
+						bop infinite 900ms ease-in;
+					transform: translateY(0);
+					opacity: 0.5;
+				}
+			}
+
+			.appa-picture {
+				animation: bop infinite 900ms ease-in;
+			}
+		}
+	}
+
+	&__party-time {
+		position: absolute;
+		top: 1.5rem;
+		right: 1.5rem;
+		height: 4rem;
+		width: 4rem;
+		animation: party-time-icon infinite 3000ms linear;
+		transition: all 200ms ease;
+		cursor: pointer;
+
+		&:hover {
+			transform: translateY(-4px);
+		}
+
+		@media(max-width: 1024px) {
+			right: calc(50% - 2rem);
+		}
 	}
 }
 
@@ -60,9 +103,9 @@
 	border: 4px solid var(--accent);
 	box-shadow: 0px 2px 8px 4px #00000080;
 
-	@media (prefers-reduced-motion: no-preference) {
-		animation: picture-hover alternate-reverse infinite 1200ms ease-in-out;
-	}
+	// @media (prefers-reduced-motion: no-preference) {
+	// 	animation: picture-hover alternate-reverse infinite 1200ms ease-in-out;
+	// }
 }
 
 .appa {
@@ -96,5 +139,53 @@ $move: 0.5vmin;
 	to {
 		transform: translateY($move*-1);
 		box-shadow: 0px 1.5*$move $move*2.5 $move*.75 #00000030;
+	}
+}
+
+@keyframes bop {
+	0% {
+		transform: translateY(0) rotate(0);
+	}
+
+	25% {
+		transform: translateY($move*-1) rotate(1deg);
+	}
+
+	50% {
+		transform: translateY(0) rotate(0);
+	}
+
+	75% {
+		transform: translateY($move*-1) rotate(-1deg);
+	}
+}
+
+@keyframes party-time {
+	from {
+		filter: hue-rotate(0deg);
+	}
+
+	to {
+		filter: hue-rotate(360deg);
+	}
+}
+
+@keyframes party-time-icon {
+	from {
+		filter: saturate(500%) contrast(800%) brightness(500%) invert(80%) sepia(50%) hue-rotate(0deg)
+	}
+
+	to {
+		filter: saturate(500%) contrast(800%) brightness(500%) invert(80%) sepia(50%) hue-rotate(360deg)
+	}
+}
+
+@keyframes on-beat {
+	from {
+		transform: scale(1);
+	}
+
+	to {
+		transform: scale(1.01);
 	}
 }
