@@ -1,11 +1,11 @@
-import { APPA_BIRTHDAY, APPA_GOTCHADAY, MS_IN_DAY } from '../consts/consts';
+import { APPA_BIRTHDAY, MS_IN_DAY } from '../consts/consts';
 import { DisplayOptions } from '../enums/display-options';
 import { AgeObject } from '../interfaces/age-interface';
 
 export default function Age(props: { selectedOption: DisplayOptions | undefined }) {
 	const today: Date = new Date(),
 		birthday: Date = new Date(APPA_BIRTHDAY),
-		gotchaday: Date = new Date(APPA_GOTCHADAY),
+		// gotchaday: Date = new Date(APPA_GOTCHADAY),
 		age = getAgeInNaturalLanguage(today, birthday, props.selectedOption);
 
 	return (
