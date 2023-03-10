@@ -12,6 +12,7 @@ import { SelectOption } from './classes/select-option';
 export default function App() {
 	const [isPartyTime, setIsPartyTime] = useState(false);
 	const [selectedOption, setSelectedOption] = useState(DisplayOptions.FULL);
+	const [isDrawerOpen, setDrawerOpen] = useState(false);
 
 	const togglePartyTime = () => {
 		setIsPartyTime(current => !current);
@@ -22,19 +23,31 @@ export default function App() {
 		setSelectedOption(option);
 	}
 
+	const handleToggle = () => {
+		setDrawerOpen(current => !current);
+	}
+
 	const ageOptions = setAgeOptions();
 
 	return (
 		<div className="app" style={{ backgroundImage: `url(${background})` }}>
 			<div className="app__inner">
 				<main className={`app__content ${isPartyTime ? 'app__content--party-time' : ''}`}>
-					<select className="app__select" onChange={handleSelect}>
-						{ageOptions.map((option) => (
-							<option value={option.value}>{option.label}</option>
-						))}
-					</select>
 					<img src={discoBall} className="app__party-time" alt="Party Time" onClick={togglePartyTime} />
-					<img src={appa} className="appa-picture" alt="Appa The Dog" />
+					<div className="appa-wrap">
+						<img src={appa} className="appa-picture" alt="Appa The Dog" />
+						<div className={`appa-wrap__drawer ${isDrawerOpen ? 'appa-wrap__drawer--open' : ''}`}>
+							<label>Age Display</label>
+							<select className="app__select" onChange={handleSelect}>
+								{ageOptions.map((option) => (
+									<option value={option.value}>{option.label}</option>
+								))}
+							</select>
+							<div className="appa-wrap__toggle" onClick={handleToggle}>
+								<span>▼</span>
+							</div>
+						</div>
+					</div>
 					<Age selectedOption={selectedOption}></Age>
 				</main>
 			</div>
