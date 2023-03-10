@@ -9,7 +9,7 @@ export default function Age(props: { selectedOption: DisplayOptions | undefined 
 		age = getAgeInNaturalLanguage(today, birthday, props.selectedOption);
 
 	return (
-		<h2 className="appa"><span>Appa</span> is {age}&nbsp;old!</h2>
+		<h2 className="age"><span>Appa</span> is {age}&nbsp;old!</h2>
 	);
 }
 

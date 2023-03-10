@@ -34,16 +34,16 @@ export default function App() {
 			<div className="app__inner">
 				<main className={`app__content ${isPartyTime ? 'app__content--party-time' : ''}`}>
 					<img src={discoBall} className="app__party-time" alt="Party Time" onClick={togglePartyTime} />
-					<div className="appa-wrap">
-						<img src={appa} className="appa-picture" alt="Appa The Dog" />
-						<div className={`appa-wrap__drawer ${isDrawerOpen ? 'appa-wrap__drawer--open' : ''}`}>
+					<div className="appa">
+						<img src={appa} className="appa__picture" alt="Appa The Dog" />
+						<div className={`appa__drawer ${isDrawerOpen ? 'appa__drawer--open' : ''}`}>
 							<label>Age Display</label>
 							<select className="app__select" onChange={handleSelect}>
 								{ageOptions.map((option) => (
 									<option value={option.value}>{option.label}</option>
 								))}
 							</select>
-							<div className="appa-wrap__toggle" onClick={handleToggle}>
+							<div className="appa__toggle" onClick={handleToggle}>
 								<span>▼</span>
 							</div>
 						</div>
