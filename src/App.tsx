@@ -21,6 +21,7 @@ export default function App() {
 	const handleSelect = (event: ChangeEvent<HTMLSelectElement>) => {
 		const option = DisplayOptions[event.target.value.toUpperCase() as keyof typeof DisplayOptions];
 		setSelectedOption(option);
+		setDrawerOpen(false);
 	}
 
 	const handleToggle = () => {
