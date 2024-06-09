@@ -33,7 +33,9 @@ export default function App() {
 		<div className="app" style={{ backgroundImage: `url(${background})` }}>
 			<div className="app__inner">
 				<main className={`app__content ${isPartyTime ? 'app__content--party-time' : ''}`}>
-					<img src={discoBall} className="app__party-time" alt="Party Time" onClick={togglePartyTime} />
+					<div className="app__party-time">
+						<img src={discoBall} className="app__party-time" alt="Party Time" onClick={togglePartyTime} />
+					</div>
 					<div className="appa">
 						<img src={appa} className="appa__picture" alt="Appa The Dog" />
 						<div className={`appa__drawer ${isDrawerOpen ? 'appa__drawer--open' : ''}`}>
