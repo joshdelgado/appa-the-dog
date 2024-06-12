@@ -2,13 +2,13 @@ import './assets/styles/app.scss';
 import { ChangeEvent, useState } from 'react';
 import appaImage from './assets/img/appa-1.webp';
 import momoImage from './assets/img/momo.webp';
-import discoBall from './assets/img/disco-ball.png';
 import background from './assets/img/cubes-noise-bg.webp';
 import Age from './components/age';
 import { DisplayOptions } from './enums/display-options';
 import { APPA_BIRTHDAY, DAYS_IN_YEAR, MS_IN_DAY } from './consts/consts';
 import { SelectOption } from './classes/select-option';
 import { ReactComponent as DogSwitchIcon } from './assets/img/dog-switch-icon.svg';
+import { ReactComponent as DiscoBallIcon } from './assets/img/disco-ball-icon.svg';
 
 export default function App() {
 	const [isPartyTime, setIsPartyTime] = useState(false);
@@ -46,7 +46,7 @@ export default function App() {
 				<main className={`app__content ${isPartyTime ? 'app__content--party-time' : ''}`}>
 					<div className="app__actions-bar">
 					<DogSwitchIcon className="app__action app__action--dog-switcher" onClick={switchDog} />
-					<img className="app__action app__action--party-time" src={discoBall} alt="Party Time" onClick={togglePartyTime} />
+					<DiscoBallIcon className="app__action app__action--party-time" onClick={togglePartyTime} />
 					</div>
 					<div className="appa">
 						<img src={ whichDogIsDisplayed === 'Appa' ? appaImage : momoImage} className="appa__picture" alt="Appa The Dog" />
