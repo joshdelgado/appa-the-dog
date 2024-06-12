@@ -1,7 +1,9 @@
 import './assets/styles/app.scss';
 import { ChangeEvent, useState } from 'react';
-import appa from './assets/img/appa-1.webp';
+import appaImage from './assets/img/appa-1.webp';
+import momoImage from './assets/img/momo.webp';
 import discoBall from './assets/img/disco-ball.png';
+import switchIcon from './assets/img/dog-switch-icon.png';
 // import appaSmall from './assets/img/appa-1--small.webp';
 import background from './assets/img/90s-bg.webp';
 import Age from './components/age';
@@ -13,6 +15,15 @@ export default function App() {
 	const [isPartyTime, setIsPartyTime] = useState(false);
 	const [selectedOption, setSelectedOption] = useState(DisplayOptions.FULL);
 	const [isDrawerOpen, setDrawerOpen] = useState(false);
+	const [whichDogIsDisplayed, setWhichDogIsDisplayed] = useState('Appa');
+
+	const switchDog = () => {
+		if (whichDogIsDisplayed === 'Appa'){
+			setWhichDogIsDisplayed('Momo');
+		} else {
+			setWhichDogIsDisplayed('Appa');
+		}
+	}
 
 	const togglePartyTime = () => {
 		setIsPartyTime(current => !current);
@@ -34,11 +45,12 @@ export default function App() {
 		<div className="app" style={{ backgroundImage: `url(${background})` }}>
 			<div className="app__inner">
 				<main className={`app__content ${isPartyTime ? 'app__content--party-time' : ''}`}>
-					<div className="app__party-time">
-						<img src={discoBall} className="app__party-time" alt="Party Time" onClick={togglePartyTime} />
+					<div className="app__actions-bar">
+					<img className="app__action app__action--dog-switcher" src={switchIcon} alt="Switch Dogs" onClick={switchDog} />
+					<img className="app__action app__action--party-time" src={discoBall} alt="Party Time" onClick={togglePartyTime} />
 					</div>
 					<div className="appa">
-						<img src={appa} className="appa__picture" alt="Appa The Dog" />
+						<img src={ whichDogIsDisplayed === 'Appa' ? appaImage : momoImage} className="appa__picture" alt="Appa The Dog" />
 						<div className={`appa__drawer ${isDrawerOpen ? 'appa__drawer--open' : ''}`}>
 							<label>Age Display</label>
 							<select className="app__select" onChange={handleSelect}>
@@ -51,7 +63,7 @@ export default function App() {
 							</div>
 						</div>
 					</div>
-					<Age selectedOption={selectedOption}></Age>
+					<Age selectedOption={selectedOption} dog={whichDogIsDisplayed}></Age>
 				</main>
 			</div>
 		</div>
