@@ -3,8 +3,6 @@ import { ChangeEvent, useState } from 'react';
 import appaImage from './assets/img/appa-1.webp';
 import momoImage from './assets/img/momo.webp';
 import discoBall from './assets/img/disco-ball.png';
-import switchIcon from './assets/img/dog-switch-icon.png';
-// import appaSmall from './assets/img/appa-1--small.webp';
 import background from './assets/img/cubes-noise-bg.webp';
 import Age from './components/age';
 import { DisplayOptions } from './enums/display-options';
