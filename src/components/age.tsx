@@ -1,15 +1,19 @@
-import { APPA_BIRTHDAY, MS_IN_DAY } from '../consts/consts';
+import { APPA_BIRTHDAY, MOMO_BIRTHDAY, MS_IN_DAY } from '../consts/consts';
 import { DisplayOptions } from '../enums/display-options';
 import { AgeObject } from '../interfaces/age-interface';
 
-export default function Age(props: { selectedOption: DisplayOptions | undefined }) {
+export default function Age(props: { selectedOption: DisplayOptions | undefined, dog: string }) {
 	const today: Date = new Date(),
-		birthday: Date = new Date(APPA_BIRTHDAY),
-		// gotchaday: Date = new Date(APPA_GOTCHADAY),
-		age = getAgeInNaturalLanguage(today, birthday, props.selectedOption);
+	appaBirthday: Date = new Date(APPA_BIRTHDAY),
+	// appaGotchaday: Date = new Date(APPA_GOTCHADAY),
+	appaAge = getAgeInNaturalLanguage(today, appaBirthday, props.selectedOption),
+	momoBirthday: Date = new Date(MOMO_BIRTHDAY),
+	// momGotchaday: Date = new Date(MOMO_GOTCHADAY),
+	momoAge = getAgeInNaturalLanguage(today, momoBirthday, props.selectedOption);
+	// TODO create an object for the dogs
 
 	return (
-		<h2 className="age"><span>Appa</span> is {age}&nbsp;old!</h2>
+		<h2 className="age"><span>{props.dog}</span> is {props.dog === 'Appa' ? appaAge : momoAge}&nbsp;old!</h2>
 	);
 }
 

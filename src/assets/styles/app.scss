@@ -82,19 +82,29 @@
 		}
 	}
 
-	&__party-time {
-		align-self: flex-end;
+	&__actions-bar {
+		display: flex;
+		justify-content: space-between;
+		width: 100%;
+	}
 
-		img {
-			height: 4rem;
-			width: 4rem;
+	&__action {
+		height: 4rem;
+		width: auto;
+		transition: all 200ms ease;
+		cursor: pointer;
+
+		&:hover {
+			transform: translateY(-4px);
+		}
+
+		&--party-time {
 			animation: party-time-icon infinite 3000ms linear;
-			transition: all 200ms ease;
-			cursor: pointer;
+		}
 
-			&:hover {
-				transform: translateY(-4px);
-			}
+		&--dog-switcher {
+			filter: brightness(100);
+			fill: #fff;
 		}
 	}
 
