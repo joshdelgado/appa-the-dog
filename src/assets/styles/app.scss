@@ -14,6 +14,8 @@
 	--accent: #B1D4E0;
 	--secondary: #2E8BC0;
 	--primary: #145DA0;
+
+	--animation-length: 210s;
 }
 
 .app {
@@ -23,7 +25,7 @@
 	overflow: hidden;
 
 	@media (prefers-reduced-motion: no-preference) {
-		animation: background-scroll infinite 210s linear;
+		animation: background-scroll infinite var(--animation-length) linear;
 	}
 
 	&__inner {
@@ -32,7 +34,7 @@
 		flex-direction: column;
 		height: 100%;
 		border: 1rem solid transparent;
-		background-color: #0c2d4833;
+		background-color: #0c2d481a;
 	}
 
 	&__content {
@@ -103,8 +105,9 @@
 		}
 
 		&--dog-switcher {
-			filter: brightness(100);
-			fill: #fff;
+			path {
+				fill: var(--accent);
+			}
 		}
 	}
 
