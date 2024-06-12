@@ -65,13 +65,16 @@
 				filter: invert(100%);
 				animation: bop infinite 900ms ease-in;
 
-				&:hover {
-					animation: party-time-icon infinite 2000ms linear,
-						bop infinite 900ms ease-in;
-					transform: translateY(0);
-					opacity: 0.5;
+
+				@media(hover:hover){
+						&:hover {
+							animation: party-time-icon infinite 2000ms linear,
+								bop infinite 900ms ease-in;
+							transform: translateY(0);
+							opacity: 0.5;
+						}
+					}
 				}
-			}
 
 			.appa-picture {
 				animation: bop infinite 900ms ease-in;
@@ -96,8 +99,10 @@
 		transition: all 200ms ease;
 		cursor: pointer;
 
-		&:hover {
-			transform: translateY(-4px);
+		@media(hover:hover){
+			&:hover {
+				transform: translateY(-4px);
+			}
 		}
 
 		&--party-time {
