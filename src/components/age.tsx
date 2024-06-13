@@ -23,7 +23,21 @@ function getAgeInNaturalLanguage(today: Date, birthday: Date, display: DisplayOp
 }
 
 function getAgeInDetail(ageObj: AgeObject): string {
-	const lastKey = Object.keys(ageObj).pop();
+	const ageObjKeysInReverse = Object.keys(ageObj).reverse();
+	let lastKey: string = 'day';
+
+	for (let i = 0; i < ageObjKeysInReverse.length; i++) {
+		if (ageObj.hasOwnProperty(ageObjKeysInReverse[i])){
+			console.log(ageObj[ageObjKeysInReverse[i]]);
+			if (ageObj[ageObjKeysInReverse[i]] === 0) {
+				continue;
+			} else {
+				lastKey = ageObjKeysInReverse[i];
+				break;
+			}
+		}
+	}
+
 	let ageString: string = '';
 
 	for (const k in ageObj) {

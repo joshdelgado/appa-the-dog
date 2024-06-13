@@ -54,7 +54,7 @@ export default function App() {
 							<label>Age Display</label>
 							<select className="app__select" onChange={handleSelect}>
 								{ageOptions.map((option) => (
-									<option value={option.value}>{option.label}</option>
+									<option value={option.value} key={option.value}>{option.label}</option>
 								))}
 							</select>
 							<div className="appa__toggle" onClick={handleToggle}>
