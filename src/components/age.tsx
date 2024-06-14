@@ -1,19 +1,15 @@
-import { APPA_BIRTHDAY, MOMO_BIRTHDAY, MS_IN_DAY } from '../consts/consts';
+import { Dog } from '../classes/dog';
+import { MS_IN_DAY } from '../consts/consts';
 import { DisplayOptions } from '../enums/display-options';
 import { AgeObject } from '../interfaces/age-interface';
 
-export default function Age(props: { selectedOption: DisplayOptions | undefined, dog: string }) {
+export default function Age(props: { selectedOption: DisplayOptions | undefined, dog: Dog }) {
 	const today: Date = new Date(),
-	appaBirthday: Date = new Date(APPA_BIRTHDAY),
-	// appaGotchaday: Date = new Date(APPA_GOTCHADAY),
-	appaAge = getAgeInNaturalLanguage(today, appaBirthday, props.selectedOption),
-	momoBirthday: Date = new Date(MOMO_BIRTHDAY),
-	// momGotchaday: Date = new Date(MOMO_GOTCHADAY),
-	momoAge = getAgeInNaturalLanguage(today, momoBirthday, props.selectedOption);
-	// TODO create an object for the dogs
+	dogName = props.dog.name,
+	dogAge = getAgeInNaturalLanguage(today, props.dog.birthday, props.selectedOption);
 
 	return (
-		<h2 className="age"><span>{props.dog}</span> is {props.dog === 'Appa' ? appaAge : momoAge}&nbsp;old!</h2>
+		<h2 className="age"><span>{dogName}</span> is {dogAge}&nbsp;old!</h2>
 	);
 }
 
@@ -28,7 +24,6 @@ function getAgeInDetail(ageObj: AgeObject): string {
 
 	for (let i = 0; i < ageObjKeysInReverse.length; i++) {
 		if (ageObj.hasOwnProperty(ageObjKeysInReverse[i])){
-			console.log(ageObj[ageObjKeysInReverse[i]]);
 			if (ageObj[ageObjKeysInReverse[i]] === 0) {
 				continue;
 			} else {
