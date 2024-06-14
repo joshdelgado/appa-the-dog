@@ -1,27 +1,54 @@
 import './assets/styles/app.scss';
 import { ChangeEvent, useState } from 'react';
-import appaImage from './assets/img/appa-1.webp';
-import momoImage from './assets/img/momo.webp';
+import appaImage1 from './assets/img/appa-1.webp';
+import appaImage2 from './assets/img/appa-2.webp';
+import appaImage3 from './assets/img/appa-3.webp';
+import momoImage1 from './assets/img/momo-1.webp';
+import momoImage2 from './assets/img/momo-2.webp';
+import momoImage3 from './assets/img/momo-3.webp';
 import background from './assets/img/cubes-noise-bg.webp';
 import Age from './components/age';
 import { DisplayOptions } from './enums/display-options';
-import { APPA_BIRTHDAY, DAYS_IN_YEAR, MS_IN_DAY } from './consts/consts';
+import { APPA_BIRTHDAY, APPA_GOTCHADAY, DAYS_IN_YEAR, MOMO_BIRTHDAY, MOMO_GOTCHADAY, MS_IN_DAY } from './consts/consts';
 import { SelectOption } from './classes/select-option';
 import { ReactComponent as DogSwitchIcon } from './assets/img/dog-switch-icon.svg';
 import { ReactComponent as DiscoBallIcon } from './assets/img/disco-ball-icon.svg';
+import { Dog } from './classes/dog';
+import { Photo } from './classes/photo';
 
 export default function App() {
+	const appa: Dog = new Dog('Appa', APPA_BIRTHDAY, APPA_GOTCHADAY, [
+		new Photo(appaImage1, 'Appa but as a little baby'),
+		new Photo(appaImage2, 'Appa covered in snow and ice'),
+		new Photo(appaImage3, 'Appa sitting on Momo'),
+	]);
+	const momo: Dog = new Dog('Momo', MOMO_BIRTHDAY, MOMO_GOTCHADAY, [
+		new Photo(momoImage1, 'Momo is sad about carrots'),
+		new Photo(momoImage2, 'Momo getting in your face'),
+		new Photo(momoImage3, 'Momo standing in the water he\'s drinking'),
+	]);
+
 	const [isPartyTime, setIsPartyTime] = useState(false);
 	const [selectedOption, setSelectedOption] = useState(DisplayOptions.FULL);
 	const [isDrawerOpen, setDrawerOpen] = useState(false);
-	const [whichDogIsDisplayed, setWhichDogIsDisplayed] = useState('Appa');
+	const [displayDog, setDisplayDog] = useState(appa);
+	const [displayPhotoIndex, setDisplayPhotoIndex] = useState(0);
+
+	const displayNextPhoto = () => {
+		let nextPhoto = displayPhotoIndex + 1;
+		if (nextPhoto === displayDog.photos.length) {
+			nextPhoto = 0;
+		}
+		setDisplayPhotoIndex(nextPhoto);
+	}
 
 	const switchDog = () => {
-		if (whichDogIsDisplayed === 'Appa'){
-			setWhichDogIsDisplayed('Momo');
+		if (displayDog.name === 'Appa') {
+			setDisplayDog(momo);
 		} else {
-			setWhichDogIsDisplayed('Appa');
+			setDisplayDog(appa);
 		}
+		setDisplayPhotoIndex(0);
 	}
 
 	const togglePartyTime = () => {
@@ -45,24 +72,28 @@ export default function App() {
 			<div className="app__inner">
 				<main className={`app__content ${isPartyTime ? 'app__content--party-time' : ''}`}>
 					<div className="app__actions-bar">
-					<DogSwitchIcon className="app__action app__action--dog-switcher" onClick={switchDog} />
-					<DiscoBallIcon className="app__action app__action--party-time" onClick={togglePartyTime} />
+						<DogSwitchIcon className="app__action app__action--dog-switcher" onClick={switchDog} />
+						<DiscoBallIcon className="app__action app__action--party-time" onClick={togglePartyTime} />
 					</div>
-					<div className="appa">
-						<img src={ whichDogIsDisplayed === 'Appa' ? appaImage : momoImage} className="appa__picture" alt="Appa The Dog" />
-						<div className={`appa__drawer ${isDrawerOpen ? 'appa__drawer--open' : ''}`}>
+					<div className="puppy">
+						<img className="puppy__picture"
+							src={displayDog.photos[displayPhotoIndex].src}
+							alt={displayDog.photos[displayPhotoIndex].alt} />
+						<div className={`puppy__drawer ${isDrawerOpen ? 'puppy__drawer--open' : ''}`}>
 							<label>Age Display</label>
 							<select className="app__select" onChange={handleSelect}>
 								{ageOptions.map((option) => (
 									<option value={option.value} key={option.value}>{option.label}</option>
 								))}
 							</select>
-							<div className="appa__toggle" onClick={handleToggle}>
+							<div className="puppy__toggle" onClick={handleToggle}>
 								<span>▼</span>
 							</div>
 						</div>
 					</div>
-					<Age selectedOption={selectedOption} dog={whichDogIsDisplayed}></Age>
+					<button className="puppy__photos-button" onClick={displayNextPhoto}>
+						<Age selectedOption={selectedOption} dog={displayDog}></Age>
+					</button>
 				</main>
 			</div>
 		</div>
