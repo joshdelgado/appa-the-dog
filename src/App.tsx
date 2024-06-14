@@ -75,23 +75,23 @@ export default function App() {
 						<DogSwitchIcon className="app__action app__action--dog-switcher" onClick={switchDog} />
 						<DiscoBallIcon className="app__action app__action--party-time" onClick={togglePartyTime} />
 					</div>
-					<div className="appa">
-						<img className="appa__picture"
+					<div className="puppy">
+						<img className="puppy__picture"
 							src={displayDog.photos[displayPhotoIndex].src}
 							alt={displayDog.photos[displayPhotoIndex].alt} />
-						<div className={`appa__drawer ${isDrawerOpen ? 'appa__drawer--open' : ''}`}>
+						<div className={`puppy__drawer ${isDrawerOpen ? 'puppy__drawer--open' : ''}`}>
 							<label>Age Display</label>
 							<select className="app__select" onChange={handleSelect}>
 								{ageOptions.map((option) => (
 									<option value={option.value} key={option.value}>{option.label}</option>
 								))}
 							</select>
-							<div className="appa__toggle" onClick={handleToggle}>
+							<div className="puppy__toggle" onClick={handleToggle}>
 								<span>▼</span>
 							</div>
 						</div>
 					</div>
-					<button className="appa__photos-button" onClick={displayNextPhoto}>
+					<button className="puppy__photos-button" onClick={displayNextPhoto}>
 						<Age selectedOption={selectedOption} dog={displayDog}></Age>
 					</button>
 				</main>
