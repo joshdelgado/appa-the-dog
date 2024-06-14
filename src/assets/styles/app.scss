@@ -88,11 +88,11 @@
 				}
 			}
 
-			.appa-picture {
+			.puppy__picture {
 				animation: bop infinite 900ms ease-in;
 			}
 
-			.appa,
+			.puppy,
 			.app__select {
 				animation: bop reverse infinite 900ms ease-in;
 			}
@@ -199,7 +199,7 @@
 		&--open {
 			transform: translateY(-1rem);
 			margin-bottom: 0;
-			
+
 			select {
 				pointer-events: all;
 			}
@@ -290,7 +290,7 @@
 
 // The width where the image bumps up against the edge of the container
 @media(max-width: 428px) {
-	.appa {
+	.puppy {
 		width: 100%;
 
 		&__picture {
