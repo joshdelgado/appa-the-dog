@@ -185,6 +185,10 @@
 		box-shadow: 0px 2px 8px 4px #0c2d4880;
 		transition: all 350ms ease;
 
+		select {
+			pointer-events: none;
+		}
+
 		label {
 			width: 12rem;
 			text-align: left;
@@ -195,6 +199,10 @@
 		&--open {
 			transform: translateY(-1rem);
 			margin-bottom: 0;
+			
+			select {
+				pointer-events: all;
+			}
 
 			.appa-wrap__toggle span {
 				transform: rotate(180deg);
